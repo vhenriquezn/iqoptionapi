@@ -309,7 +309,7 @@ class IQ_Option:
             detail[name]["binary"] = init_info["result"]["binary"]["actives"][actives]
         return detail
     
-    def get_binary_open(self, profit_minimo: float = 0.80):
+    def get_binary_open(self):
         """
         Devuelve una lista de activos binarios abiertos que cumplan con un profit mínimo.
         
@@ -321,7 +321,7 @@ class IQ_Option:
         :param profit_minimo: Profit mínimo requerido para incluir el activo.
         """
         init_info = self.get_all_init()
-        activos_binarios = []
+        activos_binarios = {}
 
         try:
             activos = init_info["result"]["binary"]["actives"]
@@ -335,12 +335,8 @@ class IQ_Option:
                     100.0 - info.get("option", {}).get("profit", {}).get("commission", 100.0)
                 ) / 100.0
 
-                if abierto and profit >= profit_minimo:
-                    activos_binarios.append({
-                        "nombre": nombre,
-                        "codigo": codigo,
-                        "profit": profit
-                    })
+                activos_binarios[nombre]= {"profit":profit, "is_open":abierto, "codigo":codigo}
+                        
         except Exception as e:
             logging.error(f"[get_binary_open] Error al procesar activos binarios: {e}")
 

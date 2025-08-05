@@ -363,6 +363,8 @@ class IQ_Option:
                         print(f"'{nombre}': {codigo},")
                 print(codigos)
             codigos_ordenados = dict(sorted(codigos.items(), key=lambda item: item[1]))
+            print("Tipo de codigos_ordenados:", type(codigos_ordenados))
+            print(codigos_ordenados)
             for nombre, codigo in codigos_ordenados.items():
                 print(f"'{nombre}': {codigo},")
 

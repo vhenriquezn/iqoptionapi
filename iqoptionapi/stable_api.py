@@ -311,6 +311,7 @@ class IQ_Option:
     
     def get_binary_open(self):
         init_info = self.get_all_init()
+        self.actualizar_todos_los_codigos()
         activos_binarios = {}
 
         try:
@@ -336,6 +337,36 @@ class IQ_Option:
             logging.error(f"[get_binary_open] Error al procesar activos binarios: {e}")
 
         return activos_binarios
+    
+    def actualizar_todos_los_codigos(self):
+        """
+        Recolecta los códigos de todos los activos disponibles en todas las categorías
+        (turbo, digital, binary, etc.), eliminando duplicados.
+        """
+        try:
+            init_info = self.get_all_init()
+            secciones = init_info.get("result", {})
+            codigos = {}
+
+            print("📋 Todos los activos con sus códigos:\n")
+
+            for tipo in secciones:
+                activos = secciones[tipo].get("actives", {})
+                for codigo, info in activos.items():
+                    nombre_completo = info.get("name", "")
+                    nombre_raw = nombre_completo.split(".", 1)[-1] if "." in nombre_completo else nombre_completo
+                    nombre = self.normalize_asset_name(nombre_raw)
+
+                    # Guardar el primer código encontrado por nombre
+                    if nombre not in codigos:
+                        codigos[nombre] = codigo
+                        print(f"'{nombre}': {codigo},")
+
+            return codigos
+
+        except Exception as e:
+            logging.error(f"[actualizar_todos_los_codigos] Error al obtener códigos: {e}")
+            return {}
 
     def get_all_profit(self):
         all_profit = nested_dict(2, dict)

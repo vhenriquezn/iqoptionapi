@@ -315,6 +315,7 @@ class IQ_Option:
 
         try:
             activos = init_info["result"]["binary", "turbo"]["actives"]
+            print(activos)
             for codigo, info in activos.items():
                 nombre_completo = info.get("name", "")
                 nombre_raw = nombre_completo.split(".", 1)[-1] if "." in nombre_completo else nombre_completo

@@ -311,6 +311,7 @@ class IQ_Option:
     
     def get_binary_open(self):
         init_info = self.get_all_init()
+        print(init_info)
         activos_binarios = {}
 
         try:

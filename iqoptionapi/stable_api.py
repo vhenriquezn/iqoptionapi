@@ -327,10 +327,10 @@ class IQ_Option:
 
                 if nombre in OP_code.ACTIVES:
                     activos_binarios[nombre]= {"profit":profit, "is_open":abierto, "codigo":codigo}
-                print("📋 Activos binarios disponibles:")
-                for nombre, datos in activos_binarios.items():
-                    estado = "✅ Abierto" if datos["is_open"] else "❌ Cerrado"
-                    print(f"• {nombre:<7} | Profit: {datos['profit']:.2%} | {estado} | Código: {datos['codigo']}")
+            print("📋 Activos binarios disponibles:")
+            for nombre, datos in activos_binarios.items():
+                estado = "✅ Abierto" if datos["is_open"] else "❌ Cerrado"
+                print(f"• {nombre:<12} | Profit: {datos['profit']:.2%} | {estado} | Código: {datos['codigo']}")
                         
         except Exception as e:
             logging.error(f"[get_binary_open] Error al procesar activos binarios: {e}")

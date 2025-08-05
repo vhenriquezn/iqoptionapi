@@ -361,7 +361,7 @@ class IQ_Option:
                     if nombre not in codigos:
                         codigos[nombre] = int(codigo)
                         print(f"'{nombre}': {codigo},")
-                print(codigos)
+            print(codigos)
             codigos_ordenados = dict(sorted(codigos.items(), key=lambda item: item[1]))
             print("Tipo de codigos_ordenados:", type(codigos_ordenados))
             print(codigos_ordenados)

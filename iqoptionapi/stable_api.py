@@ -359,13 +359,15 @@ class IQ_Option:
 
                     # Guardar el primer código encontrado por nombre
                     if nombre not in codigos:
-                        codigos[nombre] = codigo
+                        codigos[nombre] = int(codigo)
+                        print(f"'{nombre}': {codigo},")
             codigos_ordenados = dict(sorted(codigos.items(), key=lambda item: item[1]))
             for nombre, codigo in codigos_ordenados.items():
                 print(f"'{nombre}': {codigo},")
 
         except Exception as e:
             logging.error(f"[actualizar_todos_los_codigos] Error al obtener códigos: {e}")
+
 
     def get_all_profit(self):
         all_profit = nested_dict(2, dict)

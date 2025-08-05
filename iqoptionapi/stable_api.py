@@ -311,12 +311,10 @@ class IQ_Option:
     
     def get_binary_open(self):
         init_info = self.get_all_init()
-        print(init_info)
         activos_binarios = {}
 
         try:
             activos = init_info["result"]["turbo"]["actives"]
-            print(activos)
             for codigo, info in activos.items():
                 nombre_completo = info.get("name", "")
                 nombre_raw = nombre_completo.split(".", 1)[-1] if "." in nombre_completo else nombre_completo
@@ -329,6 +327,7 @@ class IQ_Option:
 
                 if nombre in OP_code.ACTIVES:
                     activos_binarios[nombre]= {"profit":profit, "is_open":abierto, "codigo":codigo}
+                print(activos_binarios)
                         
         except Exception as e:
             logging.error(f"[get_binary_open] Error al procesar activos binarios: {e}")

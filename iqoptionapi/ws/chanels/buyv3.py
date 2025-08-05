@@ -28,7 +28,7 @@ class Buyv3(Base):
             "name": "binary-options.open-option",
             "version": "1.0"
         }
-        print(data)
+        #print(data)
         self.send_websocket_request(self.name, data,str(request_id))
 
 

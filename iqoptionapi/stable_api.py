@@ -315,7 +315,7 @@ class IQ_Option:
         activos_binarios = {}
 
         try:
-            activos = init_info["result"]["binary", "turbo"]["actives"]
+            activos = init_info["result"]["turbo"]["actives"]
             print(activos)
             for codigo, info in activos.items():
                 nombre_completo = info.get("name", "")
